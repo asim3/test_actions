@@ -8,6 +8,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - run: ls -al /home/runner/work/_PipelineMapping
-      - run: sudo apt install -y tree
-      - run: tree /home/runner/
+      - run: cat /home/runner/perflog/Runner.perf
+      - run: cat /home/runner/perflog/Worker.perf
+      - run: cat /home/runner/_PipelineMapping/asim3/test_actions/PipelineFolder.json
 
