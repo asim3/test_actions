@@ -11,6 +11,7 @@ commit:
 	git config user.name "asim3 from runner"
 	git config user.email "asim3"
 	git commit -m "commit by $$(whoami)"
+	git commit -m "commit by $$(whoami) @ $$(date +%R)"
 
 push:
 	git push origin master
