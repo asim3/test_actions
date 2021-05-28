@@ -16,6 +16,7 @@ jobs:
       - run: tree /refs/heads/
       - run: tree /refs/
       - run: ls -al /
+      - run: env
 
       - run: cat /home/runner/perflog/Runner.perf
       - run: cat /home/runner/perflog/Worker.perf
@@ -23,3 +24,4 @@ jobs:
       - run: ls -al /home/runner/work/_PipelineMapping/asim3/
       - run: ls -al /home/runner/work/_PipelineMapping/asim3/test_actions/
       - run: cat /home/runner/_PipelineMapping/asim3/test_actions/PipelineFolder.json
+
