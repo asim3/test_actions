@@ -1,14 +1,25 @@
 
 name: my-triggers-actions
 
-on: [ push ]
+on:
+  push:
+    branches:
+      - master
+    tags:
+      - v\d+\.\d+\.\d+
 
 jobs:
   my-first-job:
     runs-on: ubuntu-latest
     steps:
-      - run: ls -al /home/runner/work/_PipelineMapping
+      - run: sudo apt install -y tree
+      - run: tree /refs/heads/
+      - run: tree /refs/
+      - run: ls -al /
+
       - run: cat /home/runner/perflog/Runner.perf
       - run: cat /home/runner/perflog/Worker.perf
+      - run: ls -al /home/runner/work/_PipelineMapping
+      - run: ls -al /home/runner/work/_PipelineMapping/asim3/
+      - run: ls -al /home/runner/work/_PipelineMapping/asim3/test_actions/
       - run: cat /home/runner/_PipelineMapping/asim3/test_actions/PipelineFolder.json
-
