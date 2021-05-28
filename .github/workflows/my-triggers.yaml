@@ -14,11 +14,44 @@ jobs:
     steps:
       - run: echo ${GITHUB_REF}
         # refs/heads/master
+        # refs/tags/v0.0.1
+
       - run: echo ${GITHUB_REF##*/}
         # master
+        # v0.0.1
+
       - run: |
-          if [ "${GITHUB_REF##*/}" = "master" ]; then
-            echo OK
+          GET_TAGS=$(echo $GITHUB_REF | awk -F "/" '{print $2}')
+          if [ "$GET_TAGS" = "tags" ]; then
+            echo OK: TAG
+          elif [ "${GITHUB_REF##*/}" = "master" ]; then
+            echo OK: Master
           else
-            echo Tag
+            echo "Error: $GET_TAGS"
           fi
+      
+
+      - run: echo ${GITHUB_WORKSPACE}
+        # /home/runner/work/test_actions/test_actions
+      
+      - run: echo ${GITHUB_ACTOR}
+        # asim3
+      
+      - run: echo ${GITHUB_WORKFLOW}
+        # my-triggers-actions
+      
+      - run: echo ${GITHUB_JOB}
+        # my-first-job
+
+      - run: echo ${GITHUB_REPOSITORY}
+        # asim3/test_actions
+
+      - run: echo ${GITHUB_ACTION_REF}
+      - run: echo ${GITHUB_HEAD_REF}
+      - run: echo ${GITHUB_BASE_REF}
+
+      - run: echo ${RUNNER_WORKSPACE}
+        # /home/runner/work/test_actions
+
+      - run: echo ${RUNNER_PERFLOG}
+        # /home/runner/perflog
