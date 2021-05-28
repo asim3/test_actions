@@ -5,8 +5,15 @@ on:
   push:
     branches:
       - master
+      - main
     tags:
       - v\d+\.\d+\.\d+
+      - my_tag
+
+  schedule:
+    - cron:  '0,15,30,45 * * * *'
+      # https://crontab.guru
+
 
 jobs:
   my-first-job:
@@ -29,7 +36,8 @@ jobs:
           else
             echo "Error: $GET_TAGS"
           fi
-      
+        # OK: Master
+        # OK: TAG
 
       - run: echo ${GITHUB_WORKSPACE}
         # /home/runner/work/test_actions/test_actions
@@ -55,3 +63,6 @@ jobs:
 
       - run: echo ${RUNNER_PERFLOG}
         # /home/runner/perflog
+      
+      - run: ls -al /home/runner/work/test_actions
+      - run: ls -al /home/runner/perflog
