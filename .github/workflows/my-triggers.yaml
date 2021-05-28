@@ -8,8 +8,6 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - run: ls -al /home/runner/work/_PipelineMapping
-      - run: ls -al /home/runner/work/_actions
-      - run: ls -al /home/runner/work/_temp
       - run: sudo apt install -y tree
       - run: tree /home/runner/
 
