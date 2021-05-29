@@ -1,12 +1,12 @@
 
-name: my-step-id-actions
+name: my-strategy-actions
 on: [ push ]
 jobs:
   my-env-job:
     runs-on: ubuntu-latest
+    strategy:
+      matrix: "my name is Bader"
     steps:
-
-      - id: my_step_id
-        run: echo "my name is Asim"
-
-      - run: echo ${{ steps.my_step_id.outputs.digest }}
+      - run: echo "$STRATEGY_CONTEXT"
+        env:
+          STRATEGY_CONTEXT: ${{ toJSON(strategy) }}
