@@ -6,8 +6,8 @@ jobs:
     runs-on: ubuntu-latest
     strategy:
       matrix:
-        node: [6, 8, 10]
-        my: ["my name is Ahmed"]
+        my-name: ["Bader", "Ahmed"]
+        my_order: [1, 2, 3]
     steps:
       - run: echo "$MATRIX_CONTEXT"
         env:
