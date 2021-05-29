@@ -29,5 +29,6 @@ jobs:
             asim3/added-by-github-actions
 
       - name: Image digest
-        run: echo "Image hash:" ${{ toJSON(steps.docker_build.outputs }}
-
+        run: echo ${outputs}
+        env:
+          outputs: ${{ toJSON(steps.docker_build.outputs }}
