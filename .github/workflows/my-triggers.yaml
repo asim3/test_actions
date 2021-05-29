@@ -24,6 +24,4 @@ jobs:
         uses: docker/build-push-action@v2
         with:
           push: true
-          tags: |
-            asim3/added-by-github-actions:latest
-            asim3/added-by-github-actions
+          tags: asim3/added-by-github-actions
