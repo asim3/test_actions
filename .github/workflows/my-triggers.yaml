@@ -28,6 +28,7 @@ jobs:
         # refs/heads/master
         # refs/tags/v0.0.1
 
+      - uses: actions/checkout@v2
       - run: echo ${GITHUB_REF##*/}
         # master
         # v0.0.1
@@ -80,6 +81,7 @@ jobs:
         # drwxr-xr-x 2 runner docker 4096 May 29 10:23 .
         # drwxr-xr-x 3 runner docker 4096 May 29 10:23 ..
 
-      - run: make
+      - run: ls -al ${RUNNER_WORKSPACE}/test_actions
         # drwxr-xr-x 2 runner docker 4096 May 29 10:23 .
         # drwxr-xr-x 3 runner docker 4096 May 29 10:23 ..
+      - run: make
