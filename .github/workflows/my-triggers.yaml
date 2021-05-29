@@ -7,7 +7,7 @@ jobs:
     strategy:
       matrix:
         node: [6, 8, 10]
-        my: "my name is Ahmed"
+        my: ["my name is Ahmed"]
     steps:
       - run: echo "$MATRIX_CONTEXT"
         env:
