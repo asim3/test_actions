@@ -10,10 +10,6 @@ on:
       - v\d+\.\d+\.\d+
       - my_tag
 
-  schedule:
-    - cron:  '0,15,30,45 * * * *'
-      # https://crontab.guru
-
 
 jobs:
   my-first-job:
@@ -31,10 +27,13 @@ jobs:
           GET_TAGS=$(echo $GITHUB_REF | awk -F "/" '{print $2}')
           if [ "$GET_TAGS" = "tags" ]; then
             echo OK: TAG
+            export ASIM_ENV="The user name is $(whoami)@tag"
           elif [ "${GITHUB_REF##*/}" = "master" ]; then
             echo OK: Master
+            export ASIM_ENV="The user name is $(whoami)@master"
           else
             echo "Error: $GET_TAGS"
+            export ASIM_ENV="The user name is $(whoami)@error"
           fi
         # OK: Master
         # OK: TAG
@@ -66,3 +65,5 @@ jobs:
       
       - run: ls -al /home/runner/work/test_actions
       - run: ls -al /home/runner/perflog
+      - run: echo ${ASIM_ENV}
+
