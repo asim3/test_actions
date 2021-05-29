@@ -27,8 +27,3 @@ jobs:
           tags: |
             asim3/added-by-github-actions:latest
             asim3/added-by-github-actions
-
-      - name: Image digest
-        run: echo ${outputs}
-        env:
-          outputs: ${{ toJSON(steps.docker_build.outputs }}
