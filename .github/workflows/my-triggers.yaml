@@ -20,7 +20,7 @@ jobs:
         if: ${{ github.ref == 'refs/heads/master' }}
 
       - run: echo OK 5
-        if: ${{ contains( github.ref, ' refs/heads') }}
+        if: ${{ contains( github.ref, 'refs/heads') }}
 
       - run: echo SKIP 6
         if: ${{ contains( github.ref, 'refs/tags') }}
