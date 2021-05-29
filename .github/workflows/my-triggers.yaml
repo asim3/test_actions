@@ -10,6 +10,15 @@ on:
       - v\d+\.\d+\.\d+
       - my_tag
 
+  pull_request:
+    branches:
+      - master
+      - main
+
+  release:
+    types: 
+      - created
+
 
 jobs:
   my-first-job:
@@ -68,6 +77,9 @@ jobs:
         # -rw-r--r--  1 runner docker  390 May 29 10:17 Worker.perf
 
       - run: ls -al ${GITHUB_WORKSPACE}/
+        # drwxr-xr-x 2 runner docker 4096 May 29 10:23 .
+        # drwxr-xr-x 3 runner docker 4096 May 29 10:23 ..
 
       - run: ls -al ${RUNNER_WORKSPACE}/test_actions
-      - run: exit 234
+        # drwxr-xr-x 2 runner docker 4096 May 29 10:23 .
+        # drwxr-xr-x 3 runner docker 4096 May 29 10:23 ..
