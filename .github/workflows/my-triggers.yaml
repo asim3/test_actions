@@ -1,87 +1,80 @@
 
-name: my-triggers-actions
+name: my-first-actions
 
-on:
-  push:
-    branches:
-      - master
-      - main
-    tags:
-      - v\d+\.\d+\.\d+
-      - my_tag
-
-  pull_request:
-    branches:
-      - master
-      - main
-
-  release:
-    types: 
-      - created
-
+on: [ push ]
 
 jobs:
   my-first-job:
+    
+    runs-on: ubuntu-latest
+    # runs-on: windows-latest
+    # runs-on: macos-latest
+
+    steps:
+      # use (community action) to downloads the repo files
+      - uses: actions/checkout@v2
+
+      - run: ls -al /home/runner/work/
+        # drwxr-xr-x  6 runner root   4096 May 28 13:47 .
+        # drwxrwxrwx 11 runner docker 4096 May 28 13:47 ..
+        # drwxr-xr-x  3 runner docker 4096 May 28 13:47 _PipelineMapping
+        # drwxr-xr-x  3 runner docker 4096 May 28 13:47 _actions
+        # drwxr-xr-x  4 runner docker 4096 May 28 13:47 _temp
+        # drwxr-xr-x  3 runner docker 4096 May 28 13:47 test_actions
+
+      - run: ls -al /home/runner/work/test_actions/
+        # drwxr-xr-x 3 runner docker 4096 May 28 13:47 .
+        # drwxr-xr-x 6 runner root   4096 May 28 13:47 ..
+        # drwxr-xr-x 4 runner docker 4096 May 28 13:47 test_actions
+
+      - run: ls -al /home/runner/work/test_actions/test_actions/
+        # drwxr-xr-x 4 runner docker 4096 May 28 13:47 .
+        # drwxr-xr-x 3 runner docker 4096 May 28 13:47 ..
+        # drwxr-xr-x 8 runner docker 4096 May 28 13:47 .git
+        # drwxr-xr-x 3 runner docker 4096 May 28 13:47 .github
+        # -rw-r--r-- 1 runner docker   68 May 28 13:47 index.html
+        # -rw-r--r-- 1 runner docker  273 May 28 13:47 makefile
+      
+      - run: |
+          uname
+          whoami
+          echo "Done"
+        # Linux
+        # runner
+        # Done
+
+
+  my-second-job:
+    runs-on: ubuntu-latest
+    needs: my-first-job
+    
+    steps:
+      - uses: actions/checkout@v2
+      - run: pwd # /home/runner/work/test_actions/test_actions
+      - run: cd /tmp/
+      - run: pwd # /home/runner/work/test_actions/test_actions
+
+
+  my-third-job:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v2
+      - run: make all
+      
+
+  my-env-job:
     runs-on: ubuntu-latest
     steps:
-      - run: echo ${GITHUB_REF}
-        # refs/heads/master
-        # refs/tags/v0.0.1
+      - run: echo $MY_NAME
+        env:
+          MY_NAME: Asim
+        # Asim
 
-      - uses: actions/checkout@v2
-      - run: echo ${GITHUB_REF##*/}
-        # master
-        # v0.0.1
+      - run: echo $NAME_1 $name_2 $Name_3
+        env:
+          NAME_1: asim
+          name_2: bader
+          Name_3: Ahmed
+        # asim bader Ahmed
 
-      - run: |
-          GET_TAGS=$(echo $GITHUB_REF | awk -F "/" '{print $2}')
-          if [ "$GET_TAGS" = "tags" ]; then
-            echo OK: TAG
-          elif [ "${GITHUB_REF##*/}" = "master" ]; then
-            echo OK: Master
-          else
-            echo "Error: $GET_TAGS"
-            export MY_ENV="you cannot export env. every step has its own env"
-          fi
-        # OK: Master
-        # OK: TAG
-
-      - run: echo ${GITHUB_WORKSPACE}
-        # /home/runner/work/test_actions/test_actions
-      
-      - run: echo ${GITHUB_ACTOR}
-        # asim3
-      
-      - run: echo ${GITHUB_WORKFLOW}
-        # my-triggers-actions
-      
-      - run: echo ${GITHUB_JOB}
-        # my-first-job
-
-      - run: echo ${GITHUB_REPOSITORY}
-        # asim3/test_actions
-
-      - run: echo ${GITHUB_HEAD_REF}
-        # Only set for pull request events. The name of the head branch.
-
-      - run: echo ${GITHUB_BASE_REF}
-        # Only set for pull request events. The name of the head branch.
-
-      - run: echo ${RUNNER_WORKSPACE}
-        # /home/runner/work/test_actions
-
-      - run: echo ${RUNNER_PERFLOG}
-        # /home/runner/perflog
-
-      - run: ls -al /home/runner/perflog
-        # -rw-r--r--  1 runner docker  405 May 29 10:17 Runner.perf
-        # -rw-r--r--  1 runner docker  390 May 29 10:17 Worker.perf
-
-      - run: ls -al ${GITHUB_WORKSPACE}/
-        # drwxr-xr-x 2 runner docker 4096 May 29 10:23 .
-        # drwxr-xr-x 3 runner docker 4096 May 29 10:23 ..
-
-      - run: ls -al ${RUNNER_WORKSPACE}/test_actions
-        # drwxr-xr-x 2 runner docker 4096 May 29 10:23 .
-        # drwxr-xr-x 3 runner docker 4096 May 29 10:23 ..
-      - run: make
