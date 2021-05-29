@@ -1,20 +1,17 @@
 
-name: my-matrix-actions
+name: my-step-id-actions
 on: [ push ]
 jobs:
   my-env-job:
     runs-on: ubuntu-latest
-    strategy:
-      fail-fast: false
-      # false = ignore errors
-      matrix:
-        my-name: ["Bader", "Ahmed"]
-        my_order: [1, 2, 3]
     steps:
-      - run: echo ${{ matrix.my-name }}
-      
-      - run: echo ${{ matrix.my_order }}
 
-      - run: echo "$MATRIX_CONTEXT"
-        env:
-          MATRIX_CONTEXT: ${{ matrix }}
+      - id: my_step_id
+        run: echo "::set-output name=MY_NAME::my name is Asim"
+
+      - run: echo ${{ steps.my_step_id.outputs.MY_NAME }}
+
+      - id: tag_name
+        run: echo "::set-output name=value::${GITHUB_REF##*/}"
+
+      - run: echo ${{ steps.tag_name.outputs.value }}
