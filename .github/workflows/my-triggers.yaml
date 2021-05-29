@@ -23,10 +23,10 @@ jobs:
         uses: docker/build-push-action@v2
         with:
           push: true
-          tags: 
-           - asim3/added-by-github-actions:latest
-           - asim3/added-by-github-actions:1.1.3
-           - asim3/added-by-github-actions:1.2.4
-           
+          tags: |
+            asim3/added-by-github-actions:latest
+            asim3/added-by-github-actions:1.1.3
+            asim3/added-by-github-actions:1.2.4
+
       - name: Image digest
         run: echo "Image hash:" ${{ steps.docker_build.outputs.digest }}
