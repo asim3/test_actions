@@ -1,17 +1,20 @@
 
-name: my-ci-actions
-
+name: my-matrix-actions
 on: [ push ]
-
 jobs:
-  my-first-job:
-    runs-on: ${{ matrix.os }}
+  my-env-job:
+    runs-on: ubuntu-latest
     strategy:
+      fail-fast: false
+      # false = ignore errors
       matrix:
-        os: [ubuntu-latest, windows-latest, macos-latest]
-
+        my-name: ["Bader", "Ahmed"]
+        my_order: [1, 2, 3]
     steps:
-      # use (community action) to downloads the repo files
-      - uses: actions/checkout@v2
+      - run: echo ${{ matrix.my-name }}
+      
+      - run: echo ${{ matrix.my_order }}
 
-      - run: echo $GITHUB_WORKSPACE
+      - run: echo "$MATRIX_CONTEXT"
+        env:
+          MATRIX_CONTEXT: ${{ matrix }}
