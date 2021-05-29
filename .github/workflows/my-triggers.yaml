@@ -1,17 +1,33 @@
 
-name: my-step-id-actions
+name: ci
 on: [ push ]
 jobs:
-  my-env-job:
+  docker:
     runs-on: ubuntu-latest
     steps:
+      - name: Set up QEMU
+        uses: docker/setup-qemu-action@v1
+      
+      - name: Set up Docker Buildx
+        uses: docker/setup-buildx-action@v1
+      
+      - name: Login to DockerHub
+        uses: docker/login-action@v1 
+        with:
+          registry: docker.io
+          username: ${{ secrets.DOCKERHUB_USERNAME }}
+          password: ${{ secrets.DOCKERHUB_TOKEN }}
+          # https://hub.docker.com/settings/security
 
-      - id: my_step_id
-        run: echo "::set-output name=MY_NAME::my name is Asim"
+      - name: Build and push
+        id: docker_build
+        uses: docker/build-push-action@v2
+        with:
+          push: true
+          tags: |
+            asim3/added-by-github-actions:latest
+            asim3/added-by-github-actions
 
-      - run: echo ${{ steps.my_step_id.outputs.MY_NAME }}
+      - name: Image digest
+        run: echo "Image hash:" ${{ toJSON(steps.docker_build.outputs }}
 
-      - id: tag_name
-        run: echo "::set-output name=value::${GITHUB_REF##*/}"
-
-      - run: echo ${{ steps.tag_name.outputs.value }}
