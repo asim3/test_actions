@@ -27,13 +27,11 @@ jobs:
           GET_TAGS=$(echo $GITHUB_REF | awk -F "/" '{print $2}')
           if [ "$GET_TAGS" = "tags" ]; then
             echo OK: TAG
-            export ASIM_ENV="The user name is $(whoami)@tag"
           elif [ "${GITHUB_REF##*/}" = "master" ]; then
             echo OK: Master
-            export ASIM_ENV="The user name is $(whoami)@master"
           else
             echo "Error: $GET_TAGS"
-            export ASIM_ENV="The user name is $(whoami)@error"
+            export MY_ENV="you cannot export env. every step has its own env"
           fi
         # OK: Master
         # OK: TAG
@@ -53,9 +51,11 @@ jobs:
       - run: echo ${GITHUB_REPOSITORY}
         # asim3/test_actions
 
-      - run: echo ${GITHUB_ACTION_REF}
       - run: echo ${GITHUB_HEAD_REF}
+        # Only set for pull request events. The name of the head branch.
+
       - run: echo ${GITHUB_BASE_REF}
+        # Only set for pull request events. The name of the head branch.
 
       - run: echo ${RUNNER_WORKSPACE}
         # /home/runner/work/test_actions
@@ -63,7 +63,5 @@ jobs:
       - run: echo ${RUNNER_PERFLOG}
         # /home/runner/perflog
       
-      - run: ls -al /home/runner/work/test_actions
+      - run: ls -al ${RUNNER_WORKSPACE}/test_actions
       - run: ls -al /home/runner/perflog
-      - run: echo ${ASIM_ENV}
-
