@@ -66,8 +66,8 @@ jobs:
       - run: ls -al /home/runner/perflog
         # -rw-r--r--  1 runner docker  405 May 29 10:17 Runner.perf
         # -rw-r--r--  1 runner docker  390 May 29 10:17 Worker.perf
-        
-      - run: ls -al ${GITHUB_WORKSPACE}/test_actions
+
+      - run: ls -al ${GITHUB_WORKSPACE}/
 
       - run: ls -al ${RUNNER_WORKSPACE}/test_actions
-      
+      - run: exit 234
