@@ -21,7 +21,7 @@ jobs:
       - id: get_version
         run: echo ::set-output name=VERSION::$(echo $GITHUB_REF | cut -d / -f 3)
 
-      - run: ${{ steps.get_version.outputs.VERSION }}
+      - run: echo ${{ steps.get_version.outputs.VERSION }}
         # master
         # v1.2.4
 
