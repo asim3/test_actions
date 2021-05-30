@@ -1,3 +1,4 @@
+
 name: my-context-actions
 on: [ push ]
 jobs:
@@ -6,7 +7,6 @@ jobs:
     steps:
       - run: echo github.actor = ${{ github.actor }}
       - run: echo github.event_name = ${{ github.event_name }}
-      - run: echo event.run_id = ${{ event.run_id }}
 
 
       - run: MY_NEW_ENV="Asim"
@@ -32,3 +32,4 @@ jobs:
 
 
       - run: echo env.MY_NEW_ENV ${{ env.MY_NEW_ENV }}
+
