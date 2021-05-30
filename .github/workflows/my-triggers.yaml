@@ -1,3 +1,4 @@
+
 name: my-commands-actions
 on: [ push ]
 jobs:
@@ -21,8 +22,13 @@ jobs:
         run: echo ::set-output name=VERSION::$(echo $GITHUB_REF | cut -d / -f 3)
 
       - run: ${{ steps.get_version.outputs.VERSION }}
+        # master
+        # v1.2.4
 
       - id: get_tag
         run: echo ::set-output name=VERSION::${GITHUB_REF/refs\/tags\//}
 
-      - run: ${{ steps.get_tag.outputs.VERSION }}
+      - run: echo ${{ steps.get_tag.outputs.VERSION }}
+        # master
+        # v1.2.4
+      - run: kubectl version --short
