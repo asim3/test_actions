@@ -22,7 +22,6 @@ jobs:
       - run: MY_NEW_ENV="Asim 1"
 
       - run: echo "env $AS_JSON"
-        with:
         env:
           MY_NEW_ENV_2: "Asim 2"
           AS_JSON: ${{ toJSON(env) }}
