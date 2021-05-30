@@ -10,20 +10,20 @@ jobs:
       - run: echo github.event_name = ${{ github.event_name }}
         # push
       - run: echo head_commit.message = ${{ github.event.head_commit.message }}
+        # my commit by asim
       - run: echo repository.default_branch = ${{ github.event.repository.default_branch }}
+        # master
       - run: echo repository.full_name = ${{ github.event.repository.full_name }}
+        # asim3/test_actions
       - run: echo name = ${{ github.event.repository.name }}
-      - run: echo xxx = ${{ github.event.xxx }}
-      - run: echo xxx = ${{ github.event.xxx }}
-      - run: echo xxx = ${{ github.event.xxx }}
-      - run: echo xxx = ${{ github.event.xxx }}
-        # 
-        
+        # test_actions
 
 
-      - run: MY_NEW_ENV="Asim"
+      - run: MY_NEW_ENV="Asim 1"
 
       - run: echo "env $AS_JSON"
+        with:
+          MY_NEW_ENV: "Asim 2"
         env:
           AS_JSON: ${{ toJSON(env) }}
         # env {}
@@ -33,25 +33,11 @@ jobs:
           AS_JSON: ${{ toJSON(github.event) }}
         # github.event {
         #   "repository.full_name": {
-        #     "archive_url": "https://api.github.com/repos/asim3/test_actions/{archive_format}{/ref}",
-        #     "archived": false,
-        #     "assignees_url": "https://api.github.com/repos/asim3/test_actions/assignees{/user}",
-        #     "blobs_url": "https://api.github.com/repos/asim3/test_actions/git/blobs{/sha}",
-        #     "branches_url": "https://api.github.com/repos/asim3/test_actions/branches{/branch}",
-        #     "clone_url": "https://github.com/asim3/test_actions.git",
-        #     "collaborators_url": "https://api.github.com/repos/asim3/test_actions/collaborators{/collaborator}",
-        #     "comments_url": "https://api.github.com/repos/asim3/test_actions/comments{/number}",
-        #     "commits_url": "https://api.github.com/repos/asim3/test_actions/commits{/sha}",
-        #     "compare_url": "https://api.github.com/repos/asim3/test_actions/compare/{base}...{head}",
-        #     "contents_url": "https://api.github.com/repos/asim3/test_actions/contents/{+path}",
-        #     "contributors_url": "https://api.github.com/repos/asim3/test_actions/contributors",
         #     "created_at": 1622285864,
         #     "default_branch": "master",
         #     "deployments_url": "https://api.github.com/repos/asim3/test_actions/deployments",
         #     "description": null,
         #     "disabled": false,
-        #     "downloads_url": "https://api.github.com/repos/asim3/test_actions/downloads",
-        #     "events_url": "https://api.github.com/repos/asim3/test_actions/events",
         #     "fork": false,
         #     "forks": 0,
         #     "forks_count": 0,
@@ -70,10 +56,6 @@ jobs:
         #     "hooks_url": "https://api.github.com/repos/asim3/test_actions/hooks",
         #     "html_url": "https://github.com/asim3/test_actions",
         #     "id": 371949281,
-        #     "issue_comment_url": "https://api.github.com/repos/asim3/test_actions/issues/comments{/number}",
-        #     "issue_events_url": "https://api.github.com/repos/asim3/test_actions/issues/events{/number}",
-        #     "issues_url": "https://api.github.com/repos/asim3/test_actions/issues{/number}",
-        #     "keys_url": "https://api.github.com/repos/asim3/test_actions/keys{/key_id}",
         #     "labels_url": "https://api.github.com/repos/asim3/test_actions/labels{/name}",
         #     "language": "Makefile",
         #     "languages_url": "https://api.github.com/repos/asim3/test_actions/languages",
@@ -84,7 +66,6 @@ jobs:
         #     "mirror_url": null,
         #     "name": "test_actions",
         #     "node_id": "MDEwOlJlcG9zaXRvcnkzNzE5NDkyODE=",
-        #     "notifications_url": "https://api.github.com/repos/asim3/test_actions/notifications{?since,all,participating}",
         #     "open_issues": 0,
         #     "open_issues_count": 0,
         #     "owner": {
@@ -115,12 +96,6 @@ jobs:
         #     "releases_url": "https://api.github.com/repos/asim3/test_actions/releases{/id}",
         #     "size": 34,
         #     "ssh_url": "git@github.com:asim3/test_actions.git",
-        #     "stargazers": 0,
-        #     "stargazers_count": 0,
-        #     "stargazers_url": "https://api.github.com/repos/asim3/test_actions/stargazers",
-        #     "statuses_url": "https://api.github.com/repos/asim3/test_actions/statuses/{sha}",
-        #     "subscribers_url": "https://api.github.com/repos/asim3/test_actions/subscribers",
-        #     "subscription_url": "https://api.github.com/repos/asim3/test_actions/subscription",
         #     "svn_url": "https://github.com/asim3/test_actions",
         #     "tags_url": "https://api.github.com/repos/asim3/test_actions/tags",
         #     "teams_url": "https://api.github.com/repos/asim3/test_actions/teams",
@@ -130,26 +105,6 @@ jobs:
         #     "watchers": 0,
         #     "watchers_count": 0
         #   },
-        #   "sender": {
-        #     "avatar_url": "https://avatars.githubusercontent.com/u/48256968?v=4",
-        #     "events_url": "https://api.github.com/users/asim3/events{/privacy}",
-        #     "followers_url": "https://api.github.com/users/asim3/followers",
-        #     "following_url": "https://api.github.com/users/asim3/following{/other_user}",
-        #     "gists_url": "https://api.github.com/users/asim3/gists{/gist_id}",
-        #     "gravatar_id": "",
-        #     "html_url": "https://github.com/asim3",
-        #     "id": 48256968,
-        #     "login": "asim3",
-        #     "node_id": "MDQ6VXNlcjQ4MjU2OTY4",
-        #     "organizations_url": "https://api.github.com/users/asim3/orgs",
-        #     "received_events_url": "https://api.github.com/users/asim3/received_events",
-        #     "repos_url": "https://api.github.com/users/asim3/repos",
-        #     "site_admin": false,
-        #     "starred_url": "https://api.github.com/users/asim3/starred{/owner}{/repo}",
-        #     "subscriptions_url": "https://api.github.com/users/asim3/subscriptions",
-        #     "type": "User",
-        #     "url": "https://api.github.com/users/asim3"
-        #   }
         # }
 
 
