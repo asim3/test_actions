@@ -23,9 +23,10 @@ jobs:
 
       - run: echo "env $AS_JSON"
         with:
-          MY_NEW_ENV: "Asim 2"
         env:
+          MY_NEW_ENV_2: "Asim 2"
           AS_JSON: ${{ toJSON(env) }}
+          MY_NEW_ENV_3: "Asim 3"
         # env {}
 
       - run: echo "github.event $AS_JSON"
