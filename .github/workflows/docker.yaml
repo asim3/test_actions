@@ -1,22 +1,17 @@
-
 name: docker build and push
 
 on:
-  workflow_run:
-    workflows: ["Test app"]
-    types: [completed]
+  push:
+    branches:
+      - master
+      - main
+    tags:
+      - v\d+\.\d+\.\d+
+
 
 jobs:
-  my-dddddddddddddd-job:
-    
+  docker:
     runs-on: ubuntu-latest
-    # runs-on: windows-latest
-    # runs-on: macos-latest
-
-      - run: echo $MY_ENV
-        env:
-          MY_ENV: ${{ toJSON(github.event) }}
-
-      - run: echo $MY_ENV
-        env:
-          MY_ENV: ${{ toJSON(github.event.workflow_run) }}
+    steps:
+      - id: tag_name
+        run: echo aaa
