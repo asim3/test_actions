@@ -5,10 +5,16 @@ on:
     workflows: ["Test app"]
     types: [completed]
 
-
 jobs:
-  docker:
+  build_and_push:
     runs-on: ubuntu-latest
+
     steps:
-      - id: tag_name
-        run: echo aaa
+      - run: echo $MY_ENV
+        env:
+          MY_ENV: ${{ toJSON(github.event) }}
+
+      - run: echo $MY_ENV
+        env:
+          MY_ENV: ${{ toJSON(github.event.workflow_run) }}
+          
