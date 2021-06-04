@@ -14,12 +14,9 @@ jobs:
   run-tests:
     runs-on: ubuntu-latest
     steps:
-      - run: pwd
-      - run: ls -al /home/runner/work/
+      - uses: actions/checkout@v2
       - run: ls -al $(pwd)
-      - run: ls -al /home/runner/work/test_actions
-      - run: echo 222 > /home/runner/ttt.txt
-      - run: ls -al /home/runner/
+      - run: echo 222 > $(pwd)/ttt.txt
       # - run: exit 2
 
 
@@ -28,6 +25,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - run: echo ${GITHUB_REF##*/}
+      - run: ls -al $(pwd)
 
 
   deployment:
@@ -35,5 +33,5 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - run: echo ${GITHUB_REF##*/}
-      - run: ls -al /home/runner/
+      - run: ls -al $(pwd)
       
