@@ -8,13 +8,16 @@ on:
 jobs:
   build_and_push:
     runs-on: ubuntu-latest
+    if: ${{ github.event.workflow_run.conclusion == 'success' }}
 
     steps:
       - run: echo $MY_ENV
         env:
           MY_ENV: ${{ toJSON(github.event) }}
 
-      - run: echo $MY_ENV
+      - run: echo $MY_Tag
         env:
           MY_ENV: ${{ toJSON(github.event.workflow_run) }}
-          
+
+      - run: ls -al /home/runner/
+      - run: cat /home/runner/aaaaaaaa.txt
