@@ -1,0 +1,15 @@
+
+name: docker build and push
+
+on:
+  workflow_run:
+    workflows: ["Test app"]
+    types: [completed]
+
+      - run: echo $MY_ENV
+        env:
+          MY_ENV: ${{ toJSON(github.event) }}
+
+      - run: echo $MY_ENV
+        env:
+          MY_ENV: ${{ toJSON(github.event.workflow_run) }}

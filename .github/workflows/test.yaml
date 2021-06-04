@@ -1,0 +1,13 @@
+
+name: Test app
+on:
+  push:
+    branches:
+      - master
+      - main
+    tags:
+      - v\d+\.\d+\.\d+
+
+      - run: echo $MY_ENV
+        env:
+          MY_ENV: ${{ toJSON(github.event) }}
