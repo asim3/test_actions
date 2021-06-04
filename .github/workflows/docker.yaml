@@ -1,8 +1,9 @@
-name: docker build and push
+
+name: Docker Build and Push
 
 on:
   workflow_run:
-    workflows: ["Test app"]
+    workflows: ["Run Tests"]
     types: [completed]
 
 jobs:

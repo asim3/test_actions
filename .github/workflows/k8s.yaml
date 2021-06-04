@@ -1,8 +1,9 @@
+
 name: Deploy to K8s
 
 on:
   workflow_run:
-    workflows: ["docker build and push"]
+    workflows: ["Docker Build and Push"]
     types: [completed]
 
 jobs:
