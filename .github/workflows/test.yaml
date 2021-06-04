@@ -19,4 +19,4 @@ jobs:
 
       - run: ls -al /home/runner/work/
       
-      - run: exit 2
+      # - run: exit 2
