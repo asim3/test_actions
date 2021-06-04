@@ -1,5 +1,4 @@
-name: my-first-actions
-# name: Test app
+name: Test app
 
 on:
   push:
@@ -18,10 +17,6 @@ jobs:
     # runs-on: macos-latest
 
     steps:
-      # use (community action) to downloads the repo files
       - uses: actions/checkout@v2
 
       - run: ls -al /home/runner/work/
-      - run: echo $MY_ENV
-        env:
-          MY_ENV: ${{ toJSON(github.event) }}

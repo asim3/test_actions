@@ -1,12 +1,9 @@
 name: docker build and push
 
 on:
-  push:
-    branches:
-      - master
-      - main
-    tags:
-      - v\d+\.\d+\.\d+
+  workflow_run:
+    workflows: ["Test app"]
+    types: [completed]
 
 
 jobs:
