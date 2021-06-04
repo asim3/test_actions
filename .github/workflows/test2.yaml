@@ -19,7 +19,7 @@ jobs:
 
       - run: ls -al /home/runner/work/
       
-      # - run: exit 2
+      - run: exit 2
 
       - id: tag_name
         run: echo "::set-output name=value::${GITHUB_REF##*/}"
