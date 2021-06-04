@@ -6,6 +6,14 @@ on:
     workflows: ["docker build and push"]
     types: [completed]
 
+jobs:
+  my-88888888888-job:
+    
+    runs-on: ubuntu-latest
+    # runs-on: windows-latest
+    # runs-on: macos-latest
+
+    steps:
       - run: echo $MY_ENV
         env:
           MY_ENV: ${{ toJSON(github.event) }}
