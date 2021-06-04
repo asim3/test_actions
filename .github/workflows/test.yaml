@@ -1,5 +1,5 @@
 
-name: CI-CD
+name: My jobs
 
 on:
   push:
@@ -11,10 +11,12 @@ on:
 
 
 jobs:
-  run-tests:
+  job1:
     runs-on: ubuntu-latest
     steps:
       - run: ls -al $(pwd)
+        # drwxr-xr-x 2 runner docker 4096 Jun  4 16:27 .
+        # drwxr-xr-x 3 runner docker 4096 Jun  4 16:27 ..
       - uses: actions/checkout@v2
       # - run: exit 2
       - run: ls -al $(pwd)
@@ -26,8 +28,8 @@ jobs:
         # -rw-r--r-- 1 runner docker  437 Jun  4 16:27 index.html
         # -rw-r--r-- 1 runner docker  355 Jun  4 16:27 makefile
 
-  build_and_push:
-    needs: run-tests
+  job2:
+    needs: job1
     runs-on: ubuntu-latest
     steps:
       - run: echo ${GITHUB_REF##*/}
@@ -36,12 +38,11 @@ jobs:
         # drwxr-xr-x 3 runner docker 4096 Jun  4 16:27 ..
 
 
-  deployment:
-    needs: build_and_push
+  job3:
+    needs: job2
     runs-on: ubuntu-latest
     steps:
       - run: echo ${GITHUB_REF##*/}
       - run: ls -al $(pwd)
         # drwxr-xr-x 2 runner docker 4096 Jun  4 16:27 .
         # drwxr-xr-x 3 runner docker 4096 Jun  4 16:27 ..
-      
