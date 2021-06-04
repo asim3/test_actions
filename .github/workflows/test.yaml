@@ -1,3 +1,4 @@
+
 name: CI-CD
 
 on:
@@ -16,6 +17,7 @@ jobs:
       - uses: actions/checkout@v2
       - run: ls -al /home/runner/work/
       # - run: exit 2
+      - run: echo $(whoami) > /home/runner/who.txt
 
 
   build_and_push:
@@ -30,3 +32,6 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - run: echo ${GITHUB_REF##*/}
+      - run: cat /home/runner/who.txt
+      - run: ls -al /home/runner/work/
+      
