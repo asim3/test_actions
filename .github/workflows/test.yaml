@@ -1,5 +1,4 @@
-
-name: Run Tests
+name: CI-CD
 
 on:
   push:
@@ -13,48 +12,21 @@ on:
 jobs:
   run-tests:
     runs-on: ubuntu-latest
-
     steps:
       - uses: actions/checkout@v2
-
       - run: ls -al /home/runner/work/
-      
       # - run: exit 2
-
-      - id: tag_name
-        run: echo "::set-output name=value::${GITHUB_REF##*/}"
-
-      - run: echo ${{ steps.tag_name.outputs.value }}
 
 
   build_and_push:
     needs: run-tests
     runs-on: ubuntu-latest
-
     steps:
-      - run: echo $MY_ENV
-        env:
-          MY_ENV: ${{ toJSON(github.event) }}
-
-      - run: echo $MY_Tag
-        env:
-          MY_ENV: ${{ toJSON(github.event.workflow_run) }}
-
       - run: echo ${GITHUB_REF##*/}
 
 
-  my-88888888888-job:
+  deployment:
     needs: build_and_push
     runs-on: ubuntu-latest
-
     steps:
-      - run: echo $MY_ENV
-        env:
-          MY_ENV: ${{ toJSON(github.event) }}
-
-      - run: echo $MY_ENV
-        env:
-          MY_ENV: ${{ toJSON(github.event.workflow_run) }}
-          
       - run: echo ${GITHUB_REF##*/}
-          
