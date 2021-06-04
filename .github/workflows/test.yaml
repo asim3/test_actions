@@ -16,6 +16,7 @@ jobs:
     steps:
       - uses: actions/checkout@v2
       - run: ls -al /home/runner/work/
+      - run: echo 222 > /home/runner/work/ttt.txt
       # - run: exit 2
 
 
