@@ -16,7 +16,8 @@ jobs:
     steps:
       - uses: actions/checkout@v2
       - run: ls -al /home/runner/work/
-      - run: echo 222 > /home/runner/work/ttt.txt
+      - run: echo 222 > /home/runner/ttt.txt
+      - run: ls -al /home/runner/
       # - run: exit 2
 
 
@@ -32,5 +33,5 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - run: echo ${GITHUB_REF##*/}
-      - run: ls -al /home/runner/work/
+      - run: ls -al /home/runner/
       
