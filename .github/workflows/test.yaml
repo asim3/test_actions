@@ -4,18 +4,35 @@ name: my-first-actions
 on: [ push ]
 
 jobs:
-  my-first-job:
-    
+  my-job:
     runs-on: ubuntu-latest
     # runs-on: windows-latest
     # runs-on: macos-latest
+    steps:
+      - run: |
+          uname
+          whoami
+          echo "Done"
+        # Linux
+        # runner
+        # Done
 
+
+  my-first-job:
+    runs-on: ubuntu-latest
     steps:
       - run: pwd
+        # /home/runner/work/test_actions/test_actions
 
       - run: ls -al /home/runner/work/
+        # drwxr-xr-x  6 runner root   4096 Jun  5 00:00 .
+        # drwxrwxrwx 11 runner docker 4096 Jun  5 00:00 ..
+        # drwxr-xr-x  3 runner docker 4096 Jun  5 00:00 _PipelineMapping
+        # drwxr-xr-x  3 runner docker 4096 Jun  5 00:00 _actions
+        # drwxr-xr-x  4 runner docker 4096 Jun  5 00:00 _temp
+        # drwxr-xr-x  3 runner docker 4096 Jun  5 00:00 test_actions
 
-      - uses: actions/checkout@v2
+      # - uses: actions/checkout@v2
       # use (community action) to downloads the repo files
 
       - run: ls -al /home/runner/work/
@@ -49,11 +66,10 @@ jobs:
 
 
   my-second-job:
-    runs-on: ubuntu-latest
     needs: my-first-job
-    
+    runs-on: ubuntu-latest
     steps:
-      - run: pwd # 
+      - run: pwd # /home/runner/work/test_actions/test_actions
       - run: ls -al /home/runner/work/test_actions/test_actions/
       - uses: actions/checkout@v2
       - run: pwd # /home/runner/work/test_actions/test_actions
@@ -63,7 +79,6 @@ jobs:
 
   my-third-job:
     runs-on: ubuntu-latest
-
     steps:
       - uses: actions/checkout@v2
       - run: make all
@@ -83,3 +98,4 @@ jobs:
           name_2: bader
           Name_3: Ahmed
         # asim bader Ahmed
+        
