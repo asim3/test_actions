@@ -24,16 +24,23 @@ jobs:
       - run: pwd
         # /home/runner/work/test_actions/test_actions
 
-      - run: ls -al /home/runner/work/
-        # drwxr-xr-x  6 runner root   4096 Jun  5 00:00 .
-        # drwxrwxrwx 11 runner docker 4096 Jun  5 00:00 ..
-        # drwxr-xr-x  3 runner docker 4096 Jun  5 00:00 _PipelineMapping
-        # drwxr-xr-x  3 runner docker 4096 Jun  5 00:00 _actions
-        # drwxr-xr-x  4 runner docker 4096 Jun  5 00:00 _temp
-        # drwxr-xr-x  3 runner docker 4096 Jun  5 00:00 test_actions
+      - run: ls -al /home/runner/work/test_actions/test_actions
 
-      # - uses: actions/checkout@v2
+      - uses: actions/checkout@v2
       # use (community action) to downloads the repo files
+
+      - run: ls -al /home/runner/work/test_actions/test_actions
+        # drwxr-xr-x 4 runner docker 4096 May 28 13:47 .
+        # drwxr-xr-x 3 runner docker 4096 May 28 13:47 ..
+        # drwxr-xr-x 8 runner docker 4096 May 28 13:47 .git
+        # drwxr-xr-x 3 runner docker 4096 May 28 13:47 .github
+        # -rw-r--r-- 1 runner docker   68 May 28 13:47 index.html
+        # -rw-r--r-- 1 runner docker  273 May 28 13:47 makefile
+
+      - run: ls -al /home/runner/work/test_actions/
+        # drwxr-xr-x 3 runner docker 4096 May 28 13:47 .
+        # drwxr-xr-x 6 runner root   4096 May 28 13:47 ..
+        # drwxr-xr-x 4 runner docker 4096 May 28 13:47 test_actions
 
       - run: ls -al /home/runner/work/
         # drwxr-xr-x  6 runner root   4096 May 28 13:47 .
@@ -42,19 +49,6 @@ jobs:
         # drwxr-xr-x  3 runner docker 4096 May 28 13:47 _actions
         # drwxr-xr-x  4 runner docker 4096 May 28 13:47 _temp
         # drwxr-xr-x  3 runner docker 4096 May 28 13:47 test_actions
-
-      - run: ls -al /home/runner/work/test_actions/
-        # drwxr-xr-x 3 runner docker 4096 May 28 13:47 .
-        # drwxr-xr-x 6 runner root   4096 May 28 13:47 ..
-        # drwxr-xr-x 4 runner docker 4096 May 28 13:47 test_actions
-
-      - run: ls -al /home/runner/work/test_actions/test_actions/
-        # drwxr-xr-x 4 runner docker 4096 May 28 13:47 .
-        # drwxr-xr-x 3 runner docker 4096 May 28 13:47 ..
-        # drwxr-xr-x 8 runner docker 4096 May 28 13:47 .git
-        # drwxr-xr-x 3 runner docker 4096 May 28 13:47 .github
-        # -rw-r--r-- 1 runner docker   68 May 28 13:47 index.html
-        # -rw-r--r-- 1 runner docker  273 May 28 13:47 makefile
       
       - run: |
           uname
@@ -98,4 +92,3 @@ jobs:
           name_2: bader
           Name_3: Ahmed
         # asim bader Ahmed
-        
